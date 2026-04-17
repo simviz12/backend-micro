@@ -1,5 +1,5 @@
 # Stage 1: Build all modules
-FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
+FROM maven:3.9.6-eclipse-temurin-22-alpine AS build
 WORKDIR /app
 
 # Copy poms first for caching
@@ -21,7 +21,7 @@ COPY logging-proxy/src logging-proxy/src
 RUN mvn clean install -DskipTests
 
 # Stage 2: Runtime
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:22-jre-alpine
 WORKDIR /app
 
 # Copy the final jar from logging-proxy module
